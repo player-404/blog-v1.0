@@ -22,5 +22,5 @@ function exec(sql) {
 
 module.exports = {
     exec,
-    escape: mysql.escape //防sql注入函数 该函数为mysql自带函数
+    escape: mysql.escape //防sql注入函数 该函数为mysql自带函数 防sql注入即是将特殊字符进行转义
 }
