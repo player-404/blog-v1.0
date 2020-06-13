@@ -1,4 +1,5 @@
 const { exec, escape } = require('../db/mysql');
+let xss = require('xss');
 
 //博客列表
 function getList(keywords, autor) {
@@ -21,8 +22,8 @@ function getDetiles(id) {
 }
 //创建博客
 function newBlog(postData = {}) {
-    const title = postData.title;
-    const content = postData.content;
+    const title = xss(postData.title); // 防xss攻击
+    const content = xss(postData.content); // 防xss攻击
     const createtime = Date.now();
     let sql;
     if (title && content && createtime) {
@@ -44,8 +45,8 @@ function update(id, postData = {}) {
     console.log('更新博客的id =>', id);
     
     let sql;
-    const title = postData.title;
-    const content = postData.content;
+    const title = xss(postData.title); //防xss攻击
+    const content = xss(postData.content); //防xss攻击
     const createtime = Date.now();
     console.log('id =>', id, 'title=>', title, 'content =>', content, 'createtime =>', createtime);
     console.log('type', typeof(createtime));
