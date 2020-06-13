@@ -8,7 +8,7 @@ if (env === 'production') {
     MYSQL_CONFIG = {
         host: 'localhost',
         user: 'root',
-        password: 'lzphsd1997',
+        password: '12138',
         database: 'myblog'
     }
     REDIS_CONFIG = {
@@ -22,7 +22,7 @@ if (env === 'dev') {
     MYSQL_CONFIG = {
         host: 'localhost',
         user: 'root',
-        password: 'lzphsd1997',
+        password: '12138',
         database: 'myblog'
     }
     REDIS_CONFIG = {
