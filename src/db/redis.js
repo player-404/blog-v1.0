@@ -17,6 +17,7 @@ function setKey(key, val) {
 }
 //reids获取键值对
 function getKey(key) {
+    
     return new Promise((res, rej) => {
         client.get(key, (err, reply) => {
             console.log('reply =>', reply);

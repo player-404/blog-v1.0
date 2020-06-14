@@ -14,6 +14,7 @@ function getExpiresTime() {
 const { setKey, getKey } = require('./src/db/redis');
 //处理post数据
 const getPostData = (req, res) => {
+    
     return new Promise((res, rej) => {
         if (req.method != 'POST') {
             res({});
@@ -43,6 +44,8 @@ const getPostData = (req, res) => {
 }
 
 const serverHandle = (req, res) => {
+    console.log(123);
+    
     asscess(`${req.url} -- ${req.method} -- ${req.headers['user-agent']} -- ${new Date()}`)
     res.setHeader('Content-type', 'application/json');
     req.query = querystring.parse(req.url.split('?')[1]);
@@ -52,7 +55,7 @@ const serverHandle = (req, res) => {
     const cookieStr = req.headers.cookie || '';
     cookieStr.split(';').forEach(item => {
         if (!item) return;
-        const arr = item.split('=');
+        const arr = item.split('=');    
         //去空格
         const key = arr[0].trim();
         const val = arr[1].trim();
@@ -88,8 +91,10 @@ const serverHandle = (req, res) => {
             req.session = data;
         }
         return getPostData(req,res);
+    }, (err) => {
+        console.log(err);
     })
-    .then(postData => {
+    .then(postData => {   
         //处理post数据
         req.body = postData;    
         //博客接口处理
